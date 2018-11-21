@@ -29,5 +29,5 @@ select
     , custom_signals as signals
     , custom_feedback as feedback
     , custom_urgency as urgency
-    , custom_area
+    , custom_area as area
 from `buffer-data.helpscout.conversation`

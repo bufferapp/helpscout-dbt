@@ -11,4 +11,3 @@ from
 `buffer-data.helpscout.conversation` c
 inner join `buffer-data.helpscout.conversation_tag` t on t.conversation_id = c.id
 group by 1
-limit 1000
