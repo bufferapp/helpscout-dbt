@@ -4,6 +4,9 @@ with base_conversations as (
 , base_conversation_tags as (
     select * from {{ ref('base_conversation_tags') }}
 )
+, conversation_threads as (
+    select * from {{ ref('conversation_threads') }}
+)
 select
     c.*
     , t.tag
@@ -20,3 +23,4 @@ select
 from base_conversations c
 left join base_conversation_tags t
     on t.conversation_id = c.id
+left join conversation_threads ct on ct.conversation_id = c.id
