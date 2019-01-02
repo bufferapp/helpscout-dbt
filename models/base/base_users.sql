@@ -9,5 +9,5 @@ select
     , last_name
     , photo_url
     , role
-    , timezone
+    , time_zone
 from `buffer-data.helpscout.user`
