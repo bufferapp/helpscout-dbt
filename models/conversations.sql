@@ -9,7 +9,7 @@ with base_conversations as (
 )
 select
     c.*
-    , t.tag
+    , t.tag as tags
     , exists(
         select *
         from unnest(t.tag)
