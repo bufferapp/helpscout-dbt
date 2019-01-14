@@ -6,5 +6,8 @@ dev:
 shell: dev
 	@pipenv shell
 
+deps:
+	@pipenv run dbt deps
+
 models:
 	@pipenv run dbt run

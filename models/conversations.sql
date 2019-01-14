@@ -4,11 +4,15 @@ with base_conversations as (
 , base_conversation_tags as (
     select * from {{ ref('base_conversation_tags') }}
 )
+, base_mailboxes as (
+    select * from {{ ref('base_mailboxes') }}
+)
 , conversation_threads as (
     select * from {{ ref('conversation_threads') }}
 )
 select
-    c.*
+    {{ dbt_utils.star(from=ref('base_conversations'), except=["mailbox_name"], relation_alias="c") }}
+    , m.name as mailbox_name
     , t.tag as tags
     , exists(
         select *
@@ -23,4 +27,7 @@ select
 from base_conversations c
 left join base_conversation_tags t
     on t.conversation_id = c.id
-left join conversation_threads ct on ct.conversation_id = c.id
+left join conversation_threads ct
+    on ct.conversation_id = c.id
+left join base_mailboxes m
+    on m.id = c.mailbox_id
