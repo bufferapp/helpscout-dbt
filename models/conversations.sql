@@ -14,6 +14,7 @@ select
     {{ dbt_utils.star(from=ref('base_conversations'), except=["mailbox_name"], relation_alias="c") }}
     , m.name as mailbox_name
     , t.tag as tags
+    , (select string_agg(tag, ' ') from unnest(t.tag)) as all_tags
     , exists(
         select *
         from unnest(t.tag)
