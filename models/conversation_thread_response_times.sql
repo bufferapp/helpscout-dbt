@@ -45,6 +45,6 @@ with base_conversation_threads as (
 )
 select
     *
-    , floor(first_response_time_in_minutes / 60) as first_response_time_in_hours
-    , floor(first_response_time_in_minutes / 60) as last_response_time_in_hours
+    , floor(first_response_time_in_minutes / 60.0) as first_response_time_in_hours
+    , floor(first_response_time_in_minutes / 60.0) as last_response_time_in_hours
 from response_times
